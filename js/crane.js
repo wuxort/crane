@@ -105,9 +105,10 @@ crane.controller('CraneControl', function ($scope, $http) {
     if (container.details && container.details.active) { container.details.active = false; }
     else
     {
-      $http.get("/host/" + String(container.hostid) + "/container/" + String(container.id)).success(function(data) {
-         container.details = data.result
-         container.details.active = true
+      $http.get("/host/" + String(container.hostid) + "/container/" + String(container.id) + "/logs").success(function(data) {
+         container.details = {};
+         container.details.data = data.result;
+         container.details.active = true;
       });
     }
   }

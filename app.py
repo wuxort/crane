@@ -166,6 +166,14 @@ def stop_container(host_id, container_id):
     ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("docker stop {0}".format(container_id))
     return ""
 
+@app.route('/host/<host_id>/container/<container_id>/logs', methods=['GET'])
+def log_container(host_id, container_id):
+    host = Host.query.filter_by(id=host_id).first()
+    ssh = host.get_connection()
+    ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("docker logs {0}".format(container_id))
+    data = ssh_stdout.read()
+    return jsonify(result=data)
+
 def generate_environment_params(json):
     envs = json.get('environment', [])
     result = ""

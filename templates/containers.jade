@@ -21,7 +21,7 @@
         .btn.btn-large.btn-danger(ng-click="remove_container(container)") Delete
      tr
       td(colspan=6,ng-show="container.details.active")
-        pre [[container.details | json ]]
+        pre [[container.details.data]]
    
   .btn.btn-large.btn-primary(ng-click="start_deploy()") Deploy container
   form.form-horizontal(ng-show="(add_container.status == 'active')",role="form")
