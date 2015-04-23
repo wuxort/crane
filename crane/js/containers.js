@@ -20,8 +20,8 @@ crane.controller('ContainerControl', function ($scope, $http, $modal) {
       controller: 'ImageSearchControl',
       size: 'lg',
       resolve: {
-        items: function () {
-          return $scope.items;
+        image: function () {
+          return $scope.add_container.container.image;
         }
       }
     });
